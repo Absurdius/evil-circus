@@ -4,24 +4,15 @@ using UnityEngine;
 
 public class PlayerCrouch : MonoBehaviour
 {
-    public float crouchTime;
-    float distance;
-
-    public Transform crouchTarget;
-
-    Vector3 direction;
-
-    private void Update()
+    public bool Crouch(bool isCrouching, float playerHeight, float crouchModifier)
     {
-        transform.Translate(direction.normalized * (Time.deltaTime * (distance / crouchTime)));
-    }
-
-    public bool Crouch(bool isCrouching)
-    {
-        if (isCrouching)
+        if (!isCrouching)
         {
-            direction = crouchTarget.position - transform.position;
-            distance = direction.magnitude;
+            transform.position = transform.position + new Vector3(0, -playerHeight * crouchModifier, 0);
+        }
+        else if (isCrouching)
+        {
+            transform.position = transform.position + new Vector3(0, playerHeight * crouchModifier, 0);
         }
 
         return !isCrouching;
