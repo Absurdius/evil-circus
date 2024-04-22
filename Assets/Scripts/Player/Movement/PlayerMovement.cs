@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
 
     float activeModifier;
 
+    public bool isMoving;
+
     [Header("Jump")]
     public float jumpForce;
     public float jumpCooldown;
@@ -22,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     public float crouchSpeedModifier;
     public float crouchCooldown;
     bool readyToCrouch;
-    bool isCrouching;
+    public bool isCrouching;
 
     public PlayerCrouch playerCrouch;
     public CapsuleCollider capsuleCollider;
@@ -71,6 +74,16 @@ public class PlayerMovement : MonoBehaviour
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
 
         MyInput();
+
+        if (MathF.Abs(verticalInput + horizontalInput) > 0)
+        {
+            isMoving = true;
+        }
+        else
+        {
+            isMoving = false;
+        }
+
         SpeedControl();
 
         // handle drag
