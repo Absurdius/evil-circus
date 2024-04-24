@@ -24,15 +24,22 @@ public class EnemyController : MonoBehaviour
 
     public Transform playerTarget;
     public PlayerMovement playerMovement;
+    public float chaseTime;
+    float remainingChaseTime;
+    bool isChasing;
 
     NavMeshAgent navMeshAgent;
 
     Vector3 lastKnowPosition;
     public float searchTime;
     float remainingSearchTime;
+    bool isSearching;
 
     public float normalSpeed;
     public float chaseSpeed;
+
+    public float attackRange;
+    public PlayerDeath playerDeath;
 
 
 
@@ -72,6 +79,42 @@ public class EnemyController : MonoBehaviour
             default:
                 break;
         }
+
+        SwitchState();
+    }
+
+    private void SwitchState()
+    {
+        if (Vector3.Distance(transform.position, playerTarget.position) < detectionRange && !playerMovement.isCrouching && playerMovement.isMoving && currentState != EnemyState.Chase)
+        {
+            isChasing = true;
+            currentState = EnemyState.Chase;
+
+            Debug.Log("I am chasing");
+        }
+
+        else if (currentState == EnemyState.Chase && !isChasing && currentState != EnemyState.Search)
+        {
+            lastKnowPosition = playerTarget.position;
+            remainingSearchTime = searchTime;
+            currentState = EnemyState.Search;
+
+            Debug.Log("I am searching");
+        }
+
+        else if (((currentState == EnemyState.Search && !isSearching) || (currentState == EnemyState.Attack && Vector3.Distance(transform.position, playerTarget.position) > attackRange)) && currentState != EnemyState.Patrol)
+        {
+            currentState = EnemyState.Patrol;
+
+            Debug.Log("I am patrolling");
+        }
+
+        else if (Vector3.Distance(transform.position, playerTarget.position) < attackRange && currentState != EnemyState.Attack)
+        {
+            currentState = EnemyState.Attack;
+
+            Debug.Log("I am attacking");
+        }
     }
 
     private void Patrol()
@@ -92,14 +135,6 @@ public class EnemyController : MonoBehaviour
             }
             patrolTarget = patrolPoints[currentPatrolPoint];
         }
-
-        
-        if (Vector3.Distance(transform.position, playerTarget.position) < detectionRange && !playerMovement.isCrouching && playerMovement.isMoving)
-        {
-            currentState = EnemyState.Chase;
-        }
-
-
     }
 
     private void Chase()
@@ -110,14 +145,22 @@ public class EnemyController : MonoBehaviour
 
         if (Vector3.Distance(transform.position, playerTarget.position) > detectionRange || playerMovement.isCrouching || !playerMovement.isMoving)
         {
-            lastKnowPosition = playerTarget.position;
-            currentState = EnemyState.Search;
+            remainingChaseTime -= Time.deltaTime;
+
+            if (remainingChaseTime <= 0)
+            {
+                isChasing = false;
+            }
+        }
+        else
+        {
+            remainingChaseTime = chaseTime;
         }
     }
 
     private void Search()
     {
-        navMeshAgent.speed = normalSpeed;
+        isSearching = true;
 
         navMeshAgent.destination = lastKnowPosition;
 
@@ -127,22 +170,13 @@ public class EnemyController : MonoBehaviour
 
             if (remainingSearchTime <= 0f)
             {
-                currentState = EnemyState.Patrol;
+                isSearching = false;
             }
-        }
-        else
-        {
-            remainingSearchTime = searchTime;
-        }
-
-        if (Vector3.Distance(transform.position, playerTarget.position) < detectionRange && !playerMovement.isCrouching && playerMovement.isMoving)
-        {
-            currentState = EnemyState.Chase;
         }
     }
 
     private void Attack()
     {
-        return;
+        playerDeath.Death();
     }
 }
