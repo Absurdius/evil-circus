@@ -44,8 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6ad656f9ed86dd48bc8a7d28f93eb42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crouchTime: 1
-  crouchTarget: {fileID: 9018874354082779850}
 --- !u!1 &2150057641732304712
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,12 +323,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 7
   groundDrag: 5
+  isMoving: 0
   jumpForce: 12
   jumpCooldown: 0.25
   airMultiplier: 0.4
+  crouchHeightModifier: 0
+  crouchSpeedModifier: 0
+  crouchCooldown: 0
+  isCrouching: 0
   playerCrouch: {fileID: 8427049809320708916}
+  capsuleCollider: {fileID: 0}
+  runSpeedModifier: 0
+  maxStamina: 0
+  staminaDrain: 0
+  staminaRegen: 0
+  stamina: 0
+  isRunning: 0
   playerHeight: 2
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 0
   orientation: {fileID: 527464357376133545}
