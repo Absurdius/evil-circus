@@ -46,6 +46,8 @@ public class PlayerMovement : MonoBehaviour
 
     public Transform orientation;
 
+    private MovementSoundEffectManager soundEffectManager;
+
     float horizontalInput;
     float verticalInput;
 
