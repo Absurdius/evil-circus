@@ -24,10 +24,12 @@ public class AudioSourceManager : MonoBehaviour
             Debug.LogError("Audionames has a dirrefernt length than Clips");
         } else
         {
+            wordToAudioClipMap = new Dictionary<string, AudioClip>();
             for(int i = 0; i < audioClips.Length; i++)
             {
                 wordToAudioClipMap.Add(audioNames[i], audioClips[i]);
             }
+            Debug.Log(wordToAudioClipMap.ToString());
         }
 
         this.audioSource = GetComponent<AudioSource>();
@@ -40,14 +42,20 @@ public class AudioSourceManager : MonoBehaviour
             this.audioSource.loop = loopSound;
         }
     }
-
-    void PlayAudio(string audioName)
+    public void PlayAudio(string audioName)
     {
+        Debug.Log("PlaySound " + audioName);
         if(this.audioSource.isPlaying)
         {
             this.audioSource.Stop();
         }
-        this.audioSource.clip = wordToAudioClipMap[audioName];
+        Debug.Break();
+        this.audioSource.clip = audioClips[1];
         this.audioSource.Play();
+    }
+
+    public void Stop()
+    {
+        this.audioSource.Stop();
     }
 }

@@ -46,8 +46,6 @@ public class PlayerMovement : MonoBehaviour
 
     public Transform orientation;
 
-    private AudioSourceManager audioMan;
-
     float horizontalInput;
     float verticalInput;
 
@@ -68,8 +66,6 @@ public class PlayerMovement : MonoBehaviour
         stamina = maxStamina;
         readyToRun = true;
         isRunning = false;
-
-        audioMan = GetComponentInChildren<AudioSourceManager>();
     }
 
     private void Update()
@@ -241,7 +237,7 @@ public class PlayerMovement : MonoBehaviour
             readyToCrouch = false;
 
             capsuleCollider.height = playerHeight * crouchHeightModifier;
-            capsuleCollider.center = new Vector3(0, -(playerHeight * crouchHeightModifier)/2, 0);
+            capsuleCollider.center = new Vector3(0, -(playerHeight * crouchHeightModifier) / 2, 0);
         }
         else if (isCrouching)
         {
@@ -296,7 +292,7 @@ public class PlayerMovement : MonoBehaviour
             if (stamina < maxStamina)
             {
                 stamina += staminaRegen * Time.deltaTime;
-            } 
+            }
         }
 
         if (stamina <= 0 && isRunning)
