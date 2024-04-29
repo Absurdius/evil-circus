@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Transform orientation;
 
-    private MovementSoundEffectManager soundEffectManager;
+    private AudioSourceManager audioMan;
 
     float horizontalInput;
     float verticalInput;
@@ -68,6 +68,8 @@ public class PlayerMovement : MonoBehaviour
         stamina = maxStamina;
         readyToRun = true;
         isRunning = false;
+
+        audioMan = GetComponentInChildren<AudioSourceManager>();
     }
 
     private void Update()
