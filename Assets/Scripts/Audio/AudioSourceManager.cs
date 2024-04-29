@@ -8,8 +8,6 @@ using UnityEngine;
  */
 public class AudioSourceManager : MonoBehaviour
 {
-
-
     public string[] audioNames; 
     public AudioClip[] audioClips;
     public bool loopSound; 
