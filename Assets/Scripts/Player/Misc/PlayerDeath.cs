@@ -1,15 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerDeath : MonoBehaviour
 {
-    public Transform respawnPoint;
+    public GameObject deathMessage;
+    public UIStateManager stateManager;
 
     public void Death()
     {
-        Debug.Log("You died!");
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        Time.timeScale = 0;
+        stateManager.currentState = UIStateManager.UIState.PAUSED;
+        deathMessage.SetActive(true);
 
-        transform.position = respawnPoint.position;
+    }
+
+    public void Exit()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }

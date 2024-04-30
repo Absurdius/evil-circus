@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &756560924 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7718960805255270147, guid: f70a7b224251e3846942f75c34f520a1, type: 3}
+  m_PrefabInstance: {fileID: 7516341219938633539}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1353278161
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,6 +459,46 @@ PrefabInstance:
     - target: {fileID: 5658162795356204927, guid: f70a7b224251e3846942f75c34f520a1, type: 3}
       propertyPath: m_Name
       value: InGameUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 7718189174958249537, guid: f70a7b224251e3846942f75c34f520a1, type: 3}
+      propertyPath: m_Transition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7718189174958249537, guid: f70a7b224251e3846942f75c34f520a1, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7718189174958249537, guid: f70a7b224251e3846942f75c34f520a1, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.b
+      value: 0.9607843
+      objectReference: {fileID: 0}
+    - target: {fileID: 7718189174958249537, guid: f70a7b224251e3846942f75c34f520a1, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.g
+      value: 0.9607843
+      objectReference: {fileID: 0}
+    - target: {fileID: 7718189174958249537, guid: f70a7b224251e3846942f75c34f520a1, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.r
+      value: 0.9607843
+      objectReference: {fileID: 0}
+    - target: {fileID: 7718189174958249537, guid: f70a7b224251e3846942f75c34f520a1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7718189174958249537, guid: f70a7b224251e3846942f75c34f520a1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7718189174958249537, guid: f70a7b224251e3846942f75c34f520a1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 756560924}
+    - target: {fileID: 7718189174958249537, guid: f70a7b224251e3846942f75c34f520a1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7718189174958249537, guid: f70a7b224251e3846942f75c34f520a1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UIStateManager, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

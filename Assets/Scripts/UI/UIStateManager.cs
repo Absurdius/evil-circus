@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class UIStateManager : MonoBehaviour
@@ -8,11 +9,13 @@ public class UIStateManager : MonoBehaviour
     public GameObject playingUI;
     public GameObject pausedUI;
 
-    private enum UIState
+    public enum UIState
     {
         PLAYING,
         PAUSED
     }
+
+    public UIState currentState;
 
     void Start()
     {
@@ -21,7 +24,8 @@ public class UIStateManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        // Changed Escape to Tab for testing
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             if (currentState == UIState.PLAYING){
                 Pause();
@@ -31,7 +35,7 @@ public class UIStateManager : MonoBehaviour
         }
     }
 
-    private UIState currentState;
+    //private UIState currentState;
 
     public void Play()
     {
@@ -39,6 +43,10 @@ public class UIStateManager : MonoBehaviour
         currentState = UIState.PLAYING;
         HideUI(pausedUI);
         ShowUI(playingUI);
+        HideCursor();
+
+        // Prevents play button getting stuck in selected state
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void Pause()
@@ -47,6 +55,7 @@ public class UIStateManager : MonoBehaviour
         currentState = UIState.PAUSED;
         ShowUI(pausedUI);
         HideUI(playingUI);
+        ShowCursor();
     }
 
     public void ExitToMain()
@@ -64,5 +73,17 @@ public class UIStateManager : MonoBehaviour
     {
         if (uiElement != null)
             uiElement.SetActive(false);
+    }
+
+    private void ShowCursor()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    private void HideCursor()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }

@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Ground Check")]
     public float playerHeight;
     public LayerMask whatIsGround;
-    bool grounded;
+    public bool grounded;
 
     public Transform orientation;
 
@@ -75,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
 
         MyInput();
 
-        if (MathF.Abs(verticalInput + horizontalInput) > 0)
+        if (MathF.Abs(verticalInput) + MathF.Abs(horizontalInput) > 0)
         {
             isMoving = true;
         }
