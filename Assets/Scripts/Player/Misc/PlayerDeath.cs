@@ -9,8 +9,11 @@ public class PlayerDeath : MonoBehaviour
     public GameObject deathMessage;
     public UIStateManager stateManager;
 
+    public bool isDead;
+
     public void Death()
     {
+        isDead = true;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0;
@@ -21,6 +24,7 @@ public class PlayerDeath : MonoBehaviour
 
     public void Exit()
     {
+        isDead = false;
         SceneManager.LoadScene("MainMenu");
     }
 }

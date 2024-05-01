@@ -1008,6 +1008,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InGameUI
       objectReference: {fileID: 0}
+    - target: {fileID: 6652394887975510853, guid: f70a7b224251e3846942f75c34f520a1, type: 3}
+      propertyPath: playerDeath
+      value: 
+      objectReference: {fileID: 1431759383}
     - target: {fileID: 7286719185509987224, guid: f70a7b224251e3846942f75c34f520a1, type: 3}
       propertyPath: rb
       value: 
@@ -3019,7 +3023,8 @@ PrefabInstance:
       propertyPath: stateManager
       value: 
       objectReference: {fileID: 2054316899}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2574337320768418596, guid: d4e40e79d96b70649b7546f38c95c456, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3072,6 +3077,14 @@ PrefabInstance:
       propertyPath: stateManager
       value: 
       objectReference: {fileID: 2054316899}
+    - target: {fileID: 4038434284160941025, guid: 3746482c09eca8747918681d27b0c47f, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4038434284160941025, guid: 3746482c09eca8747918681d27b0c47f, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5197774852041658946, guid: 3746482c09eca8747918681d27b0c47f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4

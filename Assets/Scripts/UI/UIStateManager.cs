@@ -8,6 +8,7 @@ public class UIStateManager : MonoBehaviour
 {
     public GameObject playingUI;
     public GameObject pausedUI;
+    public PlayerDeath playerDeath;
 
     public enum UIState
     {
@@ -25,7 +26,7 @@ public class UIStateManager : MonoBehaviour
     void Update()
     {
         // Changed Escape to Tab for testing
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Tab) && !playerDeath.isDead)
         {
             if (currentState == UIState.PLAYING){
                 Pause();
