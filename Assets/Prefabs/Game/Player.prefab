@@ -165,7 +165,7 @@ Transform:
   m_GameObject: {fileID: 5225436319185887519}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.191, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -372,7 +372,6 @@ GameObject:
   - component: {fileID: 484163215450461348}
   - component: {fileID: 6854255722787959209}
   - component: {fileID: 8266356950797261919}
-  - component: {fileID: 2574337320768418596}
   - component: {fileID: 8781781702401172346}
   m_Layer: 8
   m_Name: Player
@@ -460,24 +459,9 @@ MonoBehaviour:
   playerHeight: 2
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   grounded: 0
   orientation: {fileID: 527464357376133545}
---- !u!114 &2574337320768418596
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8640087341876936148}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5f3ffe931ecf6c4da47a7d3c373b05a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  deathMessage: {fileID: 0}
-  stateManager: {fileID: 0}
-  isDead: 0
 --- !u!114 &8781781702401172346
 MonoBehaviour:
   m_ObjectHideFlags: 0

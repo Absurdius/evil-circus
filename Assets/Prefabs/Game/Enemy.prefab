@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1824428638147345472}
   - component: {fileID: 4038434284160941025}
   - component: {fileID: 2922555330203371963}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: AudioSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 5197774852041658946}
   - component: {fileID: 4256730910545808340}
   - component: {fileID: 1899429018483033451}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,8 +231,10 @@ MonoBehaviour:
   searchTime: 5
   normalSpeed: 3.5
   chaseSpeed: 10.5
-  attackRange: 2
+  attackRange: 0
   playerDeath: {fileID: 0}
+  isStunned: 0
+  stunTime: 2
 --- !u!1 &6840900061772168958
 GameObject:
   m_ObjectHideFlags: 0
@@ -245,7 +247,7 @@ GameObject:
   - component: {fileID: 2595940122781940985}
   - component: {fileID: 5480136852066821853}
   - component: {fileID: 207611447205482259}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: EnemyObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
