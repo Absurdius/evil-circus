@@ -14,7 +14,7 @@ public class EnemyController : MonoBehaviour
         Attack
     }
     
-    EnemyState currentState = EnemyState.Idle;
+    EnemyState currentState = EnemyState.Patrol;
 
     public Transform[] patrolPoints;
     public int currentPatrolPoint;
@@ -96,11 +96,17 @@ public class EnemyController : MonoBehaviour
             if (currentState != EnemyState.Idle)
             {
                 remainingStunTime = stunTime;
-                lastKnowPosition = playerTarget.position;
             }
             currentState = EnemyState.Idle;
 
             Debug.Log("I am stunned");
+        }
+
+        else if (Vector3.Distance(transform.position, playerTarget.position) < attackRange && currentState != EnemyState.Attack)
+        {
+            currentState = EnemyState.Attack;
+
+            Debug.Log("I am attacking");
         }
 
         else if (Vector3.Distance(transform.position, playerTarget.position) < detectionRange && !playerMovement.isCrouching && playerMovement.isMoving && currentState != EnemyState.Chase)
@@ -111,40 +117,32 @@ public class EnemyController : MonoBehaviour
             Debug.Log("I am chasing");
         }
 
-        else if (((currentState == EnemyState.Chase && !isChasing) || (currentState == EnemyState.Idle && !isStunned)) && currentState != EnemyState.Search)
+        else if (currentState == EnemyState.Chase && !isChasing && currentState != EnemyState.Search)
         {
-            if (currentState != EnemyState.Idle)
-            {
-                lastKnowPosition = playerTarget.position;
-            }
+            lastKnowPosition = playerTarget.position;
             remainingSearchTime = searchTime;
             currentState = EnemyState.Search;
 
             Debug.Log("I am searching");
         }
 
-        else if ((currentState == EnemyState.Search && !isSearching) || (currentState == EnemyState.Attack && Vector3.Distance(transform.position, playerTarget.position) > attackRange) && currentState != EnemyState.Patrol)
+        else if (((currentState == EnemyState.Search && !isSearching) || (currentState == EnemyState.Attack && Vector3.Distance(transform.position, playerTarget.position) > attackRange) || (currentState == EnemyState.Idle && !isStunned)) && currentState != EnemyState.Patrol)
         {
             currentState = EnemyState.Patrol;
 
             Debug.Log("I am patrolling");
         }
-
-        else if (Vector3.Distance(transform.position, playerTarget.position) < attackRange && currentState != EnemyState.Attack)
-        {
-            currentState = EnemyState.Attack;
-
-            Debug.Log("I am attacking");
-        }
     }
 
     private void Idle()
     {
-        navMeshAgent.speed = 0;
+        //navMeshAgent.speed = 0;
+        navMeshAgent.isStopped = true;
 
         if (remainingStunTime <= 0)
         {
             isStunned = false;
+            navMeshAgent.isStopped = false;
         }
         else
         {
@@ -195,8 +193,6 @@ public class EnemyController : MonoBehaviour
 
     private void Search()
     {
-        navMeshAgent.speed = chaseSpeed;
-
         isSearching = true;
 
         navMeshAgent.destination = lastKnowPosition;

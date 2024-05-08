@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daf7f7e8e9fbbea44943957c21229f32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 1
+  attackRange: 2
   enemyController: {fileID: 0}
 --- !u!1 &7989672530741768577
 GameObject:

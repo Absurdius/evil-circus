@@ -180,6 +180,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: JulienPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 6072303053476903793, guid: 1372513a2a154af46a494f948957bfb4, type: 3}
+      propertyPath: attackRange
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
