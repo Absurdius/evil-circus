@@ -2025,7 +2025,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9124480561056441493, guid: 72d17c6aea1ff324eac1a5cff6cc318a, type: 3}
       propertyPath: attackRange
-      value: 1
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
