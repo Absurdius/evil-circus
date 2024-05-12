@@ -203,6 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  rotationMask: {x: 0, y: 1, z: 0}
 --- !u!1 &3452167878638426606
 GameObject:
   m_ObjectHideFlags: 0

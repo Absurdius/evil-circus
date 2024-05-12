@@ -5,8 +5,8 @@ public class MainMenuManager : MonoBehaviour
 {
     public void StartGame()
     {
-        //SceneManager.LoadScene("Level1");
-        SceneManager.LoadScene("DevScene");
+        SceneManager.LoadScene("SliceScene");
+        //SceneManager.LoadScene("DevScene");
     }
 
     public void QuitGame()

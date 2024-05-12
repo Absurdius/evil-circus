@@ -998,6 +998,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playingUI: {fileID: 4039005143220215267}
   pausedUI: {fileID: 4884441217021912038}
+  playerDeath: {fileID: 0}
   currentState: 0
 --- !u!1 &6634777703099447860
 GameObject:
