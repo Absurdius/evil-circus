@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class SpriteManager : MonoBehaviour
 {
-    public Sprite forward;
-    public Sprite backward;
-    public Sprite leftSide;
-    public Sprite rightSide;
+    public GameObject forward;
+    public GameObject backward;
+    public GameObject leftSide;
+    public GameObject rightSide;
 
     private Transform playerTransform;
-    private SpriteRenderer spriteRenderer;
+    //private MeshRenderer meshRenderer;
 
-    private Sprite current; 
-    private Sprite next; 
+    //private Sprite current; 
+    //private Sprite next; 
 
-    private float dotProduct = 0.0f;
+    //private float dotProduct = 0.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -23,9 +23,8 @@ public class SpriteManager : MonoBehaviour
         playerTransform = GameObject.Find("Orientation").transform;
         if (playerTransform == null) { Debug.LogError("Spritemanager: playerTransform Not found!"); }
         //spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        spriteRenderer.sprite = forward;
-        current = forward;
+        //meshRenderer = GetComponentInChildren<MeshRenderer>();
+        //meshRenderer.material = backward;
     }
 
     // Update is called once per frame
@@ -56,31 +55,40 @@ public class SpriteManager : MonoBehaviour
         }
         */
 
-        dotProduct = Vector3.Dot(transform.forward, playerTransform.forward);
-
         var relativePos = playerTransform.position - transform.position;
         var fwd = transform.forward;
         var angle = Vector3.Angle(relativePos, fwd);
 
         if (angle >= 135f)
         {
-            spriteRenderer.sprite = backward;
+            Reset();
+            backward.SetActive(true);
         }
         else if (angle < 135f && angle > 45f)
         {
             if (Vector3.Cross(fwd, relativePos).y > 0)
             {
-                spriteRenderer.sprite = leftSide;
+                Reset();
+                leftSide.SetActive(true);
             }
             else
             {
-                spriteRenderer.sprite = rightSide;
+                Reset();
+                rightSide.SetActive(true);
             }
         }
         else
         {
-            spriteRenderer.sprite = forward;
+            Reset();
+            forward.SetActive(true);
         }
-    }   
+    }
 
+    private void Reset()
+    {
+        forward.SetActive(false);
+        leftSide.SetActive(false);
+        rightSide.SetActive(false);
+        backward.SetActive(false);
+    }
 }
