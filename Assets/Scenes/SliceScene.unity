@@ -123,6 +123,28 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &164763734 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7769611592582381224, guid: 37fb79a02addbcd4cb239f44176a3a53, type: 3}
+  m_PrefabInstance: {fileID: 32444562845175813}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bf070e9a9af0df418ae57ad0b5c1569, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &411194453 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 559376574373147481, guid: 37fb79a02addbcd4cb239f44176a3a53, type: 3}
+  m_PrefabInstance: {fileID: 32444562845175813}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59425a47841320247b669b7891dd5547, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &32444562845175813
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -131,6 +153,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 55784833600036201, guid: 37fb79a02addbcd4cb239f44176a3a53, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 164763734}
+    - target: {fileID: 445018111094203466, guid: 37fb79a02addbcd4cb239f44176a3a53, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 164763734}
     - target: {fileID: 448930532285383818, guid: 37fb79a02addbcd4cb239f44176a3a53, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -171,10 +201,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 952292096940450262, guid: 37fb79a02addbcd4cb239f44176a3a53, type: 3}
+      propertyPath: stateManager
+      value: 
+      objectReference: {fileID: 411194453}
     - target: {fileID: 1458680256959528514, guid: 37fb79a02addbcd4cb239f44176a3a53, type: 3}
       propertyPath: m_Name
       value: Julien Slice Prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 2450996589951061999, guid: 37fb79a02addbcd4cb239f44176a3a53, type: 3}
+      propertyPath: stateManager
+      value: 
+      objectReference: {fileID: 411194453}
+    - target: {fileID: 2659522872263653068, guid: 37fb79a02addbcd4cb239f44176a3a53, type: 3}
+      propertyPath: stateManager
+      value: 
+      objectReference: {fileID: 411194453}
+    - target: {fileID: 3455027235002757968, guid: 37fb79a02addbcd4cb239f44176a3a53, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 164763734}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

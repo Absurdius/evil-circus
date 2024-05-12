@@ -4524,10 +4524,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6613350209614978120, guid: 3746482c09eca8747918681d27b0c47f, type: 3}
+      propertyPath: stateManager
+      value: 
+      objectReference: {fileID: 559376574373147481}
     - target: {fileID: 8719767747144486606, guid: 3746482c09eca8747918681d27b0c47f, type: 3}
       propertyPath: playerDeath
       value: 
       objectReference: {fileID: 6970425036312052109}
+    - target: {fileID: 8719767747144486606, guid: 3746482c09eca8747918681d27b0c47f, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 7769611592582381224}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5187,10 +5195,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6613350209614978120, guid: 3746482c09eca8747918681d27b0c47f, type: 3}
+      propertyPath: stateManager
+      value: 
+      objectReference: {fileID: 559376574373147481}
     - target: {fileID: 8719767747144486606, guid: 3746482c09eca8747918681d27b0c47f, type: 3}
       propertyPath: playerDeath
       value: 
       objectReference: {fileID: 6970425036312052109}
+    - target: {fileID: 8719767747144486606, guid: 3746482c09eca8747918681d27b0c47f, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 7769611592582381224}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5321,10 +5337,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 6613350209614978120, guid: 3746482c09eca8747918681d27b0c47f, type: 3}
+      propertyPath: stateManager
+      value: 
+      objectReference: {fileID: 559376574373147481}
     - target: {fileID: 8719767747144486606, guid: 3746482c09eca8747918681d27b0c47f, type: 3}
       propertyPath: playerDeath
       value: 
       objectReference: {fileID: 6970425036312052109}
+    - target: {fileID: 8719767747144486606, guid: 3746482c09eca8747918681d27b0c47f, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 7769611592582381224}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
