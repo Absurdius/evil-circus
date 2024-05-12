@@ -438,7 +438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bf070e9a9af0df418ae57ad0b5c1569, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 7
+  moveSpeed: 5
   groundDrag: 5
   isMoving: 0
   jumpForce: 9
@@ -452,8 +452,8 @@ MonoBehaviour:
   capsuleCollider: {fileID: 5184023596420249899}
   runSpeedModifier: 1.6
   maxStamina: 100
-  staminaDrain: 5
-  staminaRegen: 10
+  staminaDrain: 10
+  staminaRegen: 5
   stamina: 0
   isRunning: 0
   playerHeight: 2

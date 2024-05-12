@@ -8,7 +8,7 @@ public class PlayerAttack : MonoBehaviour
     private bool canAttack;
     private bool isAttacking;
     private Animator animator;
-    public EnemyController enemyController;
+    //public EnemyController enemyController;
 
     private void Start()
     {
@@ -47,10 +47,11 @@ public class PlayerAttack : MonoBehaviour
     public void HitCheck()
     {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, attackRange / 2, 1 << 9);
-        foreach (var hitCollider in hitColliders)
+        for (int i = 0; i < hitColliders.Length; i++)
         {
-            enemyController.isStunned = true;
+            Collider hitCollider = hitColliders[i];
+            GameObject hitColliderObject = hitCollider.transform.parent.gameObject;
+            hitColliderObject.GetComponent<EnemyController>().Stun();
         }
-        
     }
 }

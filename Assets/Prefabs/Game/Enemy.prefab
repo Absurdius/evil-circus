@@ -808,7 +808,7 @@ MonoBehaviour:
   attackRange: 1.5
   enemyAttack: {fileID: 8719767747144486606}
   isStunned: 0
-  stunTime: 2
+  stunTime: 3
 --- !u!1 &6840900061772168958
 GameObject:
   m_ObjectHideFlags: 0
