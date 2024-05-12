@@ -7,9 +7,11 @@ public class PlayerVictory : MonoBehaviour
 {
     public GameObject victoryMessage;
     public UIStateManager stateManager;
+    public bool hasWon;
 
     private void Victory()
     {
+        hasWon = true;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0;
@@ -19,6 +21,7 @@ public class PlayerVictory : MonoBehaviour
 
     public void Exit()
     {
+        hasWon = false;
         SceneManager.LoadScene("MainMenu");
     }
 

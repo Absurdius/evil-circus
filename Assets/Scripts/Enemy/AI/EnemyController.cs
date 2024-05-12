@@ -39,7 +39,8 @@ public class EnemyController : MonoBehaviour
     public float chaseSpeed;
 
     public float attackRange;
-    public PlayerDeath playerDeath;
+    public EnemyAttack enemyAttack;
+    //public PlayerDeath playerDeath;
 
     public bool isStunned;
     public float stunTime;
@@ -96,6 +97,11 @@ public class EnemyController : MonoBehaviour
             if (currentState != EnemyState.Idle)
             {
                 remainingStunTime = stunTime;
+
+                if (enemyAttack.isAttacking)
+                {
+                    enemyAttack.StunCancel();
+                }
             }
             currentState = EnemyState.Idle;
 
@@ -210,7 +216,21 @@ public class EnemyController : MonoBehaviour
 
     private void Attack()
     {
-        playerDeath.Death();
+        navMeshAgent.speed = 0.1f;
+
+        var relativePos = playerTarget.position - transform.position;
+        var fwd = transform.forward;
+        var angle = Vector3.Angle(relativePos, fwd);
+
+        if (angle < 45f)
+        {
+            navMeshAgent.destination = transform.position;
+            enemyAttack.Attack();
+        }
+        else
+        {
+            navMeshAgent.destination = playerTarget.position;
+        }
     }
 
     public void Stun()
