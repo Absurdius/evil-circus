@@ -134,7 +134,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // when to crouch
-        if (Input.GetButtonDown("Crouch") && grounded && readyToCrouch && !isRunning)
+        if (Input.GetButton("Crouch") && grounded && readyToCrouch && !isRunning)
         {
             Crouch();
         }
@@ -147,7 +147,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // when to run
-        if (Input.GetButtonDown("Run") && grounded && readyToRun && RunCheck() && !isCrouching)
+        if (Input.GetButton("Run") && grounded && readyToRun && RunCheck() && !isCrouching)
         {
             Run();
         }
@@ -192,19 +192,21 @@ public class PlayerMovement : MonoBehaviour
 
     private void SpeedControl()
     {
-        if (isCrouching)
+        if (grounded)
         {
-            activeModifier = moveSpeed * crouchSpeedModifier;
+            if (isCrouching)
+            {
+                activeModifier = moveSpeed * crouchSpeedModifier;
+            }
+            else if (isRunning)
+            {
+                activeModifier = moveSpeed * runSpeedModifier;
+            }
+            else
+            {
+                activeModifier = moveSpeed;
+            }
         }
-        else if (isRunning)
-        {
-            activeModifier = moveSpeed * runSpeedModifier;
-        }
-        else
-        {
-            activeModifier = moveSpeed;
-        }
-
 
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
