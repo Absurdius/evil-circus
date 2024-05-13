@@ -974,7 +974,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   currentPatrolPoint: 0
-  detectionRange: 50
+  detectionRangeRunning: 50
+  detectionRangeWalking: 25
+  detectionRangeCrouching: 5
   playerTarget: {fileID: 0}
   playerMovement: {fileID: 0}
   chaseTime: 2

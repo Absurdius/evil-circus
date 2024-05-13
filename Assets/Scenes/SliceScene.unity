@@ -209,6 +209,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Julien Slice Prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 2445976756572761931, guid: 37fb79a02addbcd4cb239f44176a3a53, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2450996589951061999, guid: 37fb79a02addbcd4cb239f44176a3a53, type: 3}
       propertyPath: stateManager
       value: 
@@ -217,10 +221,34 @@ PrefabInstance:
       propertyPath: stateManager
       value: 
       objectReference: {fileID: 411194453}
+    - target: {fileID: 3066084261301190097, guid: 37fb79a02addbcd4cb239f44176a3a53, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.6107
+      objectReference: {fileID: 0}
+    - target: {fileID: 3066084261301190097, guid: 37fb79a02addbcd4cb239f44176a3a53, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3066084261301190097, guid: 37fb79a02addbcd4cb239f44176a3a53, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.2114
+      objectReference: {fileID: 0}
     - target: {fileID: 3455027235002757968, guid: 37fb79a02addbcd4cb239f44176a3a53, type: 3}
       propertyPath: playerMovement
       value: 
       objectReference: {fileID: 164763734}
+    - target: {fileID: 8423809751156723803, guid: 37fb79a02addbcd4cb239f44176a3a53, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8645196561111001132, guid: 37fb79a02addbcd4cb239f44176a3a53, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829694721228281252, guid: 37fb79a02addbcd4cb239f44176a3a53, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

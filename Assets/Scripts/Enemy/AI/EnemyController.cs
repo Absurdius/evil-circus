@@ -20,7 +20,9 @@ public class EnemyController : MonoBehaviour
     public int currentPatrolPoint;
     Transform patrolTarget;
 
-    public float detectionRange;
+    public float detectionRangeRunning;
+    public float detectionRangeWalking;
+    public float detectionRangeCrouching;
 
     public Transform playerTarget;
     public PlayerMovement playerMovement;
@@ -115,7 +117,7 @@ public class EnemyController : MonoBehaviour
             Debug.Log("I am attacking");
         }
 
-        else if (Vector3.Distance(transform.position, playerTarget.position) < detectionRange && !playerMovement.isCrouching && playerMovement.isMoving && currentState != EnemyState.Chase)
+        else if (DetectionCheck() && currentState != EnemyState.Chase)
         {
             isChasing = true;
             currentState = EnemyState.Chase;
@@ -138,6 +140,26 @@ public class EnemyController : MonoBehaviour
 
             Debug.Log("I am patrolling");
         }
+    }
+
+    private bool DetectionCheck()
+    {
+        if (playerMovement.isMoving)
+        {
+            if (Vector3.Distance(transform.position, playerTarget.position) < detectionRangeRunning && playerMovement.isRunning)
+            {
+                return true;
+            }
+            else if (Vector3.Distance(transform.position, playerTarget.position) < detectionRangeWalking && !playerMovement.isCrouching)
+            {
+                return true;
+            }
+            else if (Vector3.Distance(transform.position, playerTarget.position) < detectionRangeCrouching)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void Idle()
@@ -164,11 +186,8 @@ public class EnemyController : MonoBehaviour
 
         if (Vector3.Distance(transform.position, patrolTarget.position) < 1f)
         {
-            if (currentPatrolPoint < patrolPoints.Length)
-            {
-                currentPatrolPoint++;
-            }
-            else
+            currentPatrolPoint++;
+            if (currentPatrolPoint == patrolPoints.Length)
             {
                 currentPatrolPoint = 0;
             }
@@ -182,7 +201,7 @@ public class EnemyController : MonoBehaviour
 
         navMeshAgent.destination = playerTarget.position;
 
-        if (Vector3.Distance(transform.position, playerTarget.position) > detectionRange || playerMovement.isCrouching || !playerMovement.isMoving)
+        if (!DetectionCheck())
         {
             remainingChaseTime -= Time.deltaTime;
 
