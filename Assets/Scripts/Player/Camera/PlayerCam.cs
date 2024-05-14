@@ -34,4 +34,9 @@ public class PlayerCam : MonoBehaviour
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
     }
 
+    public void ChangeSense(float newSense)
+    {
+        senseX = newSense;
+        senseY = newSense;
+    }
 }

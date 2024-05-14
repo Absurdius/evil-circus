@@ -107,8 +107,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52c4e2b6efdcfc34f834eb0453529f93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  senseX: 400
-  senseY: 400
+  senseX: 200
+  senseY: 200
   orientation: {fileID: 0}
 --- !u!1 &6472472928256445206
 GameObject:
@@ -253,7 +253,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackRange: 0.5
-  enemyController: {fileID: 0}
 --- !u!1 &7989672530741768577
 GameObject:
   m_ObjectHideFlags: 0
