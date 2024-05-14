@@ -11,11 +11,14 @@ public class EnemyAttack : MonoBehaviour
     public PlayerDeath playerDeath;
     private MeshRenderer meshRenderer;
     public PlayerMovement playerMovement;
+    public UIStateManager stateManager;
+    AudioSource audioSource;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
         meshRenderer = GetComponent<MeshRenderer>();
+        audioSource = GetComponent<AudioSource>();
         canAttack = true;
     }
 
@@ -24,6 +27,11 @@ public class EnemyAttack : MonoBehaviour
         if (isAttacking)
         {
             HitCheck();
+        }
+
+        if (audioSource.isPlaying && stateManager.currentState == UIStateManager.UIState.PAUSED)
+        {
+            audioSource.Stop();
         }
     }
 
@@ -42,6 +50,7 @@ public class EnemyAttack : MonoBehaviour
             {
                 animator.SetTrigger("Attack2");
             }
+            audioSource.Play();
         }
     }
 
@@ -50,6 +59,10 @@ public class EnemyAttack : MonoBehaviour
         animator.SetTrigger("Stun");
         StopAttacking();
         ResetAttack();
+        if (audioSource.isPlaying)
+        {
+            audioSource.Stop();
+        }
         animator.ResetTrigger("Stun");
     }
 

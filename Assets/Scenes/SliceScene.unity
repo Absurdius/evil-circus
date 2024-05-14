@@ -154,9 +154,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 55784833600036201, guid: 37fb79a02addbcd4cb239f44176a3a53, type: 3}
+      propertyPath: stateManager
+      value: 
+      objectReference: {fileID: 411194453}
+    - target: {fileID: 55784833600036201, guid: 37fb79a02addbcd4cb239f44176a3a53, type: 3}
       propertyPath: playerMovement
       value: 
       objectReference: {fileID: 164763734}
+    - target: {fileID: 445018111094203466, guid: 37fb79a02addbcd4cb239f44176a3a53, type: 3}
+      propertyPath: stateManager
+      value: 
+      objectReference: {fileID: 411194453}
     - target: {fileID: 445018111094203466, guid: 37fb79a02addbcd4cb239f44176a3a53, type: 3}
       propertyPath: playerMovement
       value: 
@@ -234,9 +242,17 @@ PrefabInstance:
       value: 1.2114
       objectReference: {fileID: 0}
     - target: {fileID: 3455027235002757968, guid: 37fb79a02addbcd4cb239f44176a3a53, type: 3}
+      propertyPath: stateManager
+      value: 
+      objectReference: {fileID: 411194453}
+    - target: {fileID: 3455027235002757968, guid: 37fb79a02addbcd4cb239f44176a3a53, type: 3}
       propertyPath: playerMovement
       value: 
       objectReference: {fileID: 164763734}
+    - target: {fileID: 5967876416876893689, guid: 37fb79a02addbcd4cb239f44176a3a53, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8423809751156723803, guid: 37fb79a02addbcd4cb239f44176a3a53, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0

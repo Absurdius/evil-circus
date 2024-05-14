@@ -37,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
     public float staminaRegen;
     public float stamina;
     bool readyToRun;
+    bool staminaNeedRecharge;
     public bool isRunning;
 
     [Header("Ground Check")]
@@ -134,7 +135,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // when to crouch
-        if (Input.GetButton("Crouch") && grounded && readyToCrouch && !isRunning)
+        if (Input.GetButtonDown("Crouch") && grounded && readyToCrouch && !isRunning)
         {
             Crouch();
         }
@@ -147,7 +148,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // when to run
-        if (Input.GetButton("Run") && grounded && readyToRun && RunCheck() && !isCrouching)
+        if (Input.GetButtonDown("Run") && grounded && readyToRun && RunCheck() && !isCrouching)
         {
             Run();
         }
@@ -260,7 +261,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!isRunning)
         {
-            readyToRun = false;
+            //readyToRun = false;
             isRunning = true;
         }
         else if (isRunning)
@@ -300,9 +301,10 @@ public class PlayerMovement : MonoBehaviour
         if (stamina <= 0 && isRunning)
         {
             Run();
+            readyToRun = false;
         }
 
-        if (stamina > maxStamina * 0.1f && !isRunning && !readyToRun)
+        if (stamina >= maxStamina && !isRunning && !readyToRun)
         {
             ResetRun();
         }

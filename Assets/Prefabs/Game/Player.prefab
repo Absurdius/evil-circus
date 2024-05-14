@@ -453,7 +453,7 @@ MonoBehaviour:
   runSpeedModifier: 1.6
   maxStamina: 100
   staminaDrain: 10
-  staminaRegen: 5
+  staminaRegen: 10
   stamina: 0
   isRunning: 0
   playerHeight: 2

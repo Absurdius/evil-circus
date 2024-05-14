@@ -27,7 +27,7 @@ public class UIStateManager : MonoBehaviour
     void Update()
     {
         // Changed Escape to Tab for testing
-        if (Input.GetKeyDown(KeyCode.Tab) && !playerDeath.isDead && !playerVictory.hasWon)
+        if (Input.GetKeyDown(KeyCode.Escape) && !playerDeath.isDead && !playerVictory.hasWon)
         {
             if (currentState == UIState.PLAYING){
                 Pause();
