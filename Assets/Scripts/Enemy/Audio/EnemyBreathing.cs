@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class EnemyBreathing : MonoBehaviour
 {
-    public UIStateManager stateManager;
+    UIStateManager stateManager;
     private AudioSource audioSource;
 
     void Start()
     {
+        stateManager = GameObject.FindWithTag("StateManager").GetComponent<UIStateManager>();
+
         audioSource = GetComponent<AudioSource>();
     }
 

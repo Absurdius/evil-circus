@@ -5,11 +5,13 @@ using UnityEngine;
 
 public class SpeedDisplay : MonoBehaviour
 {
-    public Rigidbody rb;
+    Rigidbody rb;
     private TMP_Text display;
 
     private void Start()
     {
+        rb = GameObject.FindWithTag("Player").GetComponentInChildren<Rigidbody>();
+
         display = GetComponent<TMP_Text>();
     }
 

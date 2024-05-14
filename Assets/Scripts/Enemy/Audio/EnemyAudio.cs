@@ -8,12 +8,13 @@ public class EnemyAudio : MonoBehaviour
     public AudioClip[] clips;
     AudioSource audioSource;
     public NavMeshAgent navMeshAgent;
-    public UIStateManager stateManager;
+    UIStateManager stateManager;
 
     public float runningThreshhold;
 
     void Start()
     {
+        stateManager = GameObject.FindWithTag("StateManager").GetComponent<UIStateManager>();
         audioSource = GetComponent<AudioSource>();
     }
 

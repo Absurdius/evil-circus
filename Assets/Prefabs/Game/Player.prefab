@@ -475,5 +475,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathMessage: {fileID: 0}
-  stateManager: {fileID: 0}
   isDead: 0

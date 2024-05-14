@@ -8,8 +8,7 @@ public class UIStateManager : MonoBehaviour
 {
     public GameObject playingUI;
     public GameObject pausedUI;
-    public PlayerDeath playerDeath;
-    public PlayerVictory playerVictory;
+    VictoryAndDeath victoryAndDeath;
 
     public enum UIState
     {
@@ -21,13 +20,14 @@ public class UIStateManager : MonoBehaviour
 
     void Start()
     {
+        victoryAndDeath = GetComponent<VictoryAndDeath>();
         Play();    
     }
 
     void Update()
     {
         // Changed Escape to Tab for testing
-        if (Input.GetKeyDown(KeyCode.Escape) && !playerDeath.isDead && !playerVictory.hasWon)
+        if (Input.GetKeyDown(KeyCode.Escape) && !victoryAndDeath.gameOver)
         {
             if (currentState == UIState.PLAYING){
                 Pause();

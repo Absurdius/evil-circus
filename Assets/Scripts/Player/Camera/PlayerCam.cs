@@ -16,6 +16,9 @@ public class PlayerCam : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        senseX = CamSenseSave.instance.camSense;
+        senseY = CamSenseSave.instance.camSense;
     }
 
     private void Update()
@@ -38,5 +41,6 @@ public class PlayerCam : MonoBehaviour
     {
         senseX = newSense;
         senseY = newSense;
+        CamSenseSave.instance.camSense = newSense;
     }
 }

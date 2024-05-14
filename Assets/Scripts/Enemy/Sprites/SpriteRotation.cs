@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class SpriteRotation : MonoBehaviour
 {
-    public Transform target;
+    Transform target;
     public Vector3 rotationMask;
+
+    private void Start()
+    {
+        target = GameObject.FindWithTag("Player").transform;
+    }
 
     void Update()
     {

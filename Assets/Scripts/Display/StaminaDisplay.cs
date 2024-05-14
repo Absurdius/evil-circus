@@ -5,11 +5,13 @@ using UnityEngine;
 
 public class StaminaDisplay : MonoBehaviour
 {
-    public PlayerMovement playerMovement;
+    //public PlayerMovement playerMovement;
+    PlayerMovement playerMovement;
     private TMP_Text display;
 
     private void Start()
     {
+        playerMovement = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
         display = GetComponent<TMP_Text>();
     }
 

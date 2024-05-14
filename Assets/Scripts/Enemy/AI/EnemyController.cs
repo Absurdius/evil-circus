@@ -24,8 +24,8 @@ public class EnemyController : MonoBehaviour
     public float detectionRangeWalking;
     public float detectionRangeCrouching;
 
-    public Transform playerTarget;
-    public PlayerMovement playerMovement;
+    Transform playerTarget;
+    PlayerMovement playerMovement;
     public float chaseTime;
     float remainingChaseTime;
     bool isChasing;
@@ -52,6 +52,9 @@ public class EnemyController : MonoBehaviour
 
     private void Start()
     {
+        playerTarget = GameObject.FindWithTag("Player").transform;
+        playerMovement = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
+
         navMeshAgent = GetComponent<NavMeshAgent>();
 
         navMeshAgent.speed = normalSpeed;

@@ -6,8 +6,13 @@ using UnityEngine.SceneManagement;
 public class PlayerVictory : MonoBehaviour
 {
     public GameObject victoryMessage;
-    public UIStateManager stateManager;
+    UIStateManager stateManager;
     public bool hasWon;
+
+    private void Start()
+    {
+        stateManager = GameObject.FindWithTag("StateManager").GetComponent<UIStateManager>();
+    }
 
     private void Victory()
     {

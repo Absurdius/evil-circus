@@ -10,12 +10,14 @@ public class EnemyAttack : MonoBehaviour
     private Animator animator;
     public PlayerDeath playerDeath;
     private MeshRenderer meshRenderer;
-    public PlayerMovement playerMovement;
-    public UIStateManager stateManager;
+    PlayerMovement playerMovement;
+    UIStateManager stateManager;
     AudioSource audioSource;
 
     private void Start()
     {
+        playerMovement = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
+        stateManager = GameObject.FindWithTag("StateManager").GetComponent<UIStateManager>();
         animator = GetComponent<Animator>();
         meshRenderer = GetComponent<MeshRenderer>();
         audioSource = GetComponent<AudioSource>();

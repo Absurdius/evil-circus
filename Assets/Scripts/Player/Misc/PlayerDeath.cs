@@ -7,9 +7,14 @@ using UnityEngine.SceneManagement;
 public class PlayerDeath : MonoBehaviour
 {
     public GameObject deathMessage;
-    public UIStateManager stateManager;
+    UIStateManager stateManager;
 
     public bool isDead;
+
+    private void Start()
+    {
+        stateManager = GameObject.FindWithTag("StateManager").GetComponent<UIStateManager>();
+    }
 
     public void Death()
     {
