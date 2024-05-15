@@ -33,6 +33,7 @@ public class GapingController : MonoBehaviour
     public int scanTimeMax;
     public int scanCooldownMin;
     public int scanCooldownMax;
+    public int detectionTime;
 
     public GameObject eyes;
     public SpotLight eyeLight;
@@ -44,9 +45,11 @@ public class GapingController : MonoBehaviour
 
     [Header("Misc")]
     bool stateChanged;
+    bool coRoutineRunning;
 
     Transform playerTarget;
     NavMeshAgent navMeshAgent;
+    GapingAudio gapingAudio;
 
     [Header("Debug")]
     public bool patrolDebug;
@@ -60,6 +63,7 @@ public class GapingController : MonoBehaviour
         //eyeLight = GetComponentInChildren<SpotLight>();
         playerTarget = GameObject.FindWithTag("Player").transform;
         navMeshAgent = GetComponent<NavMeshAgent>();
+        gapingAudio = GetComponentInChildren<GapingAudio>();
 
         currentPatrolPoint = 0;
         patrolTarget = patrolPoints[currentPatrolPoint];
@@ -139,9 +143,11 @@ public class GapingController : MonoBehaviour
 
             eyes.SetActive(false);
 
+            gapingAudio.ChangeAudioSate(GapingAudio.AudioState.Idle);
+
             stateChanged = false;
             var patrolTime = Random.Range(scanCooldownMin, scanCooldownMax);
-            StartCoroutine(ChangeState(patrolTime, TheGapingState.Scan));
+            StartCoroutine(ChangeState(patrolTime, TheGapingState.Scan, false));
         }
 
         navMeshAgent.speed = patrolSpeed;
@@ -183,15 +189,21 @@ public class GapingController : MonoBehaviour
 
             stateChanged = false;
             var scanTime = Random.Range(scanTimeMin, scanTimeMax);
-            StartCoroutine(ChangeState(scanTime, TheGapingState.Patrol));
+            StartCoroutine(ChangeState(scanTime, TheGapingState.Patrol, false));
         }
 
         navMeshAgent.destination = transform.position;
 
 
-        if (VisionCheck())
+        if (VisionCheck() && !coRoutineRunning)
         {
-            StartCoroutine(ChangeState(0, TheGapingState.Chase));
+            StartCoroutine(ChangeState(detectionTime, TheGapingState.Chase, true));
+            gapingAudio.ChangeAudioSate(GapingAudio.AudioState.Detected);
+        }
+        else if (!VisionCheck() && coRoutineRunning)
+        {
+            StopCoroutine(ChangeState(detectionTime, TheGapingState.Chase, true));
+            gapingAudio.ChangeAudioSate(GapingAudio.AudioState.Idle);
         }
     }
 
@@ -204,6 +216,7 @@ public class GapingController : MonoBehaviour
                 Debug.Log("I am chasing");
             }
 
+            gapingAudio.ChangeAudioSate(GapingAudio.AudioState.Chasing);
             stateChanged = false;
         }
 
@@ -213,11 +226,13 @@ public class GapingController : MonoBehaviour
 
         if (!VisionCheck())
         {
-            StartCoroutine(ChangeState(chaseTime, TheGapingState.Scan));
+            StartCoroutine(ChangeState(chaseTime, TheGapingState.Scan, false));
+            gapingAudio.ChangeAudioSate(GapingAudio.AudioState.Idle);
         }
         else if (VisionCheck())
         {
             StopAllCoroutines();
+            gapingAudio.ChangeAudioSate(GapingAudio.AudioState.Chasing);
         }
     }
     private void Attack()
@@ -229,14 +244,21 @@ public class GapingController : MonoBehaviour
                 Debug.Log("I am attacking");
             }
 
+            gapingAudio.ChangeAudioSate(GapingAudio.AudioState.Attacking);
             stateChanged = false;
         }
 
         return;
     }
 
-    private IEnumerator ChangeState(int waitTime, TheGapingState newState)
+    // The flag bool is used to help indentify when a specific coroutine is running. Only one active flag works at a time
+    private IEnumerator ChangeState(int waitTime, TheGapingState newState, bool flag)
     {
+        if (flag)
+        {
+            coRoutineRunning = true;
+        }
+
         if (stateDebug)
         {
             Debug.Log("Trying to change state");
@@ -246,6 +268,7 @@ public class GapingController : MonoBehaviour
         currentState = newState;
         stateChanged = true;
 
+        coRoutineRunning = false;
         StopAllCoroutines();
     }
 }

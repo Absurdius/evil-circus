@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class EnemyBreathing : MonoBehaviour
 {
-    UIStateManager stateManager;
+    //UIStateManager stateManager;
     private AudioSource audioSource;
 
     void Start()
     {
-        stateManager = GameObject.FindWithTag("StateManager").GetComponent<UIStateManager>();
+        //stateManager = GameObject.FindWithTag("StateManager").GetComponent<UIStateManager>();
 
         audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
     {
-        if (stateManager.currentState == UIStateManager.UIState.PAUSED)
+        if (UIStateManager.currentState == UIStateManager.UIState.PAUSED)
         {
             audioSource.Stop();
         }

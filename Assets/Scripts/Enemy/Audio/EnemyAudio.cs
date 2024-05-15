@@ -8,20 +8,20 @@ public class EnemyAudio : MonoBehaviour
     public AudioClip[] clips;
     AudioSource audioSource;
     public NavMeshAgent navMeshAgent;
-    UIStateManager stateManager;
+    //UIStateManager stateManager;
 
     public float runningThreshhold;
 
     void Start()
     {
-        stateManager = GameObject.FindWithTag("StateManager").GetComponent<UIStateManager>();
+        //stateManager = GameObject.FindWithTag("StateManager").GetComponent<UIStateManager>();
         audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
     {
         // Stops the sound when the game is paused
-        if (stateManager.currentState == UIStateManager.UIState.PLAYING)
+        if (UIStateManager.currentState == UIStateManager.UIState.PLAYING)
         {
             if (navMeshAgent.velocity.magnitude > runningThreshhold)
             {

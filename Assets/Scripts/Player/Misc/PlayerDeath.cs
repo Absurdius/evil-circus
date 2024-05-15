@@ -7,13 +7,13 @@ using UnityEngine.SceneManagement;
 public class PlayerDeath : MonoBehaviour
 {
     public GameObject deathMessage;
-    UIStateManager stateManager;
+    //UIStateManager stateManager;
 
     public bool isDead;
 
     private void Start()
     {
-        stateManager = GameObject.FindWithTag("StateManager").GetComponent<UIStateManager>();
+        //stateManager = GameObject.FindWithTag("StateManager").GetComponent<UIStateManager>();
     }
 
     public void Death()
@@ -22,7 +22,7 @@ public class PlayerDeath : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0;
-        stateManager.currentState = UIStateManager.UIState.PAUSED;
+        UIStateManager.currentState = UIStateManager.UIState.PAUSED;
         deathMessage.SetActive(true);
 
     }

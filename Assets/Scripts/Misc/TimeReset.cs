@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class TimeReset : MonoBehaviour
 {
-    UIStateManager stateManager;
+    //UIStateManager stateManager;
     void Start()
     {
-        stateManager = GameObject.FindWithTag("StateManager").GetComponent<UIStateManager>();
+        //stateManager = GameObject.FindWithTag("StateManager").GetComponent<UIStateManager>();
 
-        if (stateManager.currentState == UIStateManager.UIState.PAUSED)
+        if (UIStateManager.currentState == UIStateManager.UIState.PAUSED)
         {
-            stateManager.currentState = UIStateManager.UIState.PLAYING;
+            UIStateManager.currentState = UIStateManager.UIState.PLAYING;
         }
     }
 

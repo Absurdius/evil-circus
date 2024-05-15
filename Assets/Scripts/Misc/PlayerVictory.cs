@@ -6,12 +6,12 @@ using UnityEngine.SceneManagement;
 public class PlayerVictory : MonoBehaviour
 {
     public GameObject victoryMessage;
-    UIStateManager stateManager;
+    //UIStateManager stateManager;
     public bool hasWon;
 
     private void Start()
     {
-        stateManager = GameObject.FindWithTag("StateManager").GetComponent<UIStateManager>();
+        //stateManager = GameObject.FindWithTag("StateManager").GetComponent<UIStateManager>();
     }
 
     private void Victory()
@@ -20,7 +20,7 @@ public class PlayerVictory : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0;
-        stateManager.currentState = UIStateManager.UIState.PAUSED;
+        UIStateManager.currentState = UIStateManager.UIState.PAUSED;
         victoryMessage.SetActive(true);
     }
 

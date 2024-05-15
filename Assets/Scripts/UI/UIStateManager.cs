@@ -16,7 +16,7 @@ public class UIStateManager : MonoBehaviour
         PAUSED
     }
 
-    public UIState currentState;
+    public static UIState currentState;
 
     void Start()
     {

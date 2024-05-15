@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class VictoryAndDeath : MonoBehaviour
 {
-    UIStateManager stateManager;
+    //UIStateManager stateManager;
     public GameObject victoryMessage;
     public GameObject deathMessage;
 
@@ -13,7 +13,7 @@ public class VictoryAndDeath : MonoBehaviour
 
     private void Start()
     {
-        stateManager = GetComponent<UIStateManager>();
+        //stateManager = GetComponent<UIStateManager>();
     }
 
     public void Victory()
@@ -22,7 +22,7 @@ public class VictoryAndDeath : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0;
-        stateManager.currentState = UIStateManager.UIState.PAUSED;
+        UIStateManager.currentState = UIStateManager.UIState.PAUSED;
         victoryMessage.SetActive(true);
     }
 
@@ -32,7 +32,7 @@ public class VictoryAndDeath : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0;
-        stateManager.currentState = UIStateManager.UIState.PAUSED;
+        UIStateManager.currentState = UIStateManager.UIState.PAUSED;
         deathMessage.SetActive(true);
     }
 

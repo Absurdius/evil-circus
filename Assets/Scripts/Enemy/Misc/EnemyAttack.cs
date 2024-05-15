@@ -11,13 +11,13 @@ public class EnemyAttack : MonoBehaviour
     public PlayerDeath playerDeath;
     private MeshRenderer meshRenderer;
     PlayerMovement playerMovement;
-    UIStateManager stateManager;
+    //UIStateManager stateManager;
     AudioSource audioSource;
 
     private void Start()
     {
         playerMovement = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
-        stateManager = GameObject.FindWithTag("StateManager").GetComponent<UIStateManager>();
+        //stateManager = GameObject.FindWithTag("StateManager").GetComponent<UIStateManager>();
         animator = GetComponent<Animator>();
         meshRenderer = GetComponent<MeshRenderer>();
         audioSource = GetComponent<AudioSource>();
@@ -31,7 +31,7 @@ public class EnemyAttack : MonoBehaviour
             HitCheck();
         }
 
-        if (audioSource.isPlaying && stateManager.currentState == UIStateManager.UIState.PAUSED)
+        if (audioSource.isPlaying && UIStateManager.currentState == UIStateManager.UIState.PAUSED)
         {
             audioSource.Stop();
         }

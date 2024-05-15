@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
     public float crouchHeight = 1f;
     public bool isGrounded;
     public Transform groundCheck;
-    UIStateManager stateManager;
+    //UIStateManager stateManager;
     public AudioSource[] audioSources;
     public AudioClip[] audioClips;
 
@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        stateManager = GameObject.FindWithTag("StateManager").GetComponent<UIStateManager>();
+        //stateManager = GameObject.FindWithTag("StateManager").GetComponent<UIStateManager>();
 
         stamina = maxStamina;
     }
@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
         GetInputs();
 
         // Prevent us from moving if game is paused
-        if (stateManager.currentState == UIStateManager.UIState.PAUSED && canMove)
+        if (UIStateManager.currentState == UIStateManager.UIState.PAUSED && canMove)
         {
             canMove = false;
             foreach (AudioSource audioSource in audioSources)
@@ -102,7 +102,7 @@ public class PlayerController : MonoBehaviour
                 audioSource.Stop();
             }
         }
-        else if (stateManager.currentState == UIStateManager.UIState.PLAYING && !canMove)
+        else if (UIStateManager.currentState == UIStateManager.UIState.PLAYING && !canMove)
         {
             canMove = true;
         }

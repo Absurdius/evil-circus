@@ -11,7 +11,7 @@ public class MovementSoundEffectManager : MonoBehaviour
     //private Rigidbody rb;
     //private readonly float threshold = 0.7f;
     public PlayerMovement playerMovement;
-    public UIStateManager stateManager;
+    //public UIStateManager stateManager;
 
     void Start()
     {
@@ -21,7 +21,7 @@ public class MovementSoundEffectManager : MonoBehaviour
 
     void Update()
     {
-        if (stateManager.currentState == UIStateManager.UIState.PLAYING)
+        if (UIStateManager.currentState == UIStateManager.UIState.PLAYING)
         {
             // rb.magnitude takes yVel into account and doesn't work for walking sound
             if (playerMovement.isMoving && playerMovement.grounded)
