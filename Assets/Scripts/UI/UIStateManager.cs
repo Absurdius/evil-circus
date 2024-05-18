@@ -8,7 +8,10 @@ public class UIStateManager : MonoBehaviour
 {
     public GameObject playingUI;
     public GameObject pausedUI;
-    VictoryAndDeath victoryAndDeath;
+    
+    [SerializeField] private GameObject settingsUI;
+    [SerializeField] private GameObject hudUI;
+    //VictoryAndDeath victoryAndDeath;
 
     public enum UIState
     {
@@ -20,8 +23,8 @@ public class UIStateManager : MonoBehaviour
 
     void Start()
     {
-        victoryAndDeath = GetComponent<VictoryAndDeath>();
-        if(victoryAndDeath == null) { Debug.LogError("[UIStateManager] Component VictoryAndDeath not found!"); }
+        //victoryAndDeath = GetComponent<VictoryAndDeath>();
+        //if(victoryAndDeath == null) { Debug.LogError("[UIStateManager] Component VictoryAndDeath not found!"); }
 
         Play();    
     }
@@ -62,6 +65,17 @@ public class UIStateManager : MonoBehaviour
     public void ExitToMain()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void ToggleSettings()
+    {
+        if (settingsUI.activeSelf)
+        {
+            settingsUI.SetActive(false);
+        } else
+        {
+            settingsUI.SetActive(true);
+        }
     }
 
     private void ShowUI(GameObject uiElement)
