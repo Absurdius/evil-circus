@@ -21,12 +21,13 @@ public class UIStateManager : MonoBehaviour
     void Start()
     {
         victoryAndDeath = GetComponent<VictoryAndDeath>();
+        if(victoryAndDeath == null) { Debug.LogError("[UIStateManager] Component VictoryAndDeath not found!"); }
+
         Play();    
     }
 
     void Update()
     {
-        // Changed Escape to Tab for testing
         if (Input.GetKeyDown(KeyCode.Escape) && !victoryAndDeath.gameOver)
         {
             if (currentState == UIState.PLAYING){
@@ -36,8 +37,6 @@ public class UIStateManager : MonoBehaviour
             }
         }
     }
-
-    //private UIState currentState;
 
     public void Play()
     {

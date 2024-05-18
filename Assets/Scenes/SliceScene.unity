@@ -183,6 +183,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Julien Slice Prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 2708446870281343348, guid: 37fb79a02addbcd4cb239f44176a3a53, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: cdb7e8d493c50034eb10efff37b3a68b, type: 2}
+    - target: {fileID: 2708446870281343348, guid: 37fb79a02addbcd4cb239f44176a3a53, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4065740503218827987, guid: 37fb79a02addbcd4cb239f44176a3a53, type: 3}
       propertyPath: senseX
       value: 100
