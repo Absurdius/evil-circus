@@ -28,7 +28,7 @@ public class UIStateManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !victoryAndDeath.gameOver)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (currentState == UIState.PLAYING){
                 Pause();
