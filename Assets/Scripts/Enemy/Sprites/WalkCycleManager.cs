@@ -19,9 +19,9 @@ public class WalkCycleManager : MonoBehaviour
     {
         playerTransform = GameObject.Find("Orientation").transform;
         if (playerTransform == null) { Debug.LogError("WalkcycleManager: playerTransform Not found!"); }
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         if (spriteRenderer == null) { Debug.LogError("WalkcycleManager: spriterenderer Not found!"); }
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         if (animator == null) { Debug.LogError("WalkcycleManager: animator Not found!"); }
 
     }
@@ -45,6 +45,7 @@ public class WalkCycleManager : MonoBehaviour
         else if (playerRelativeAngle > -135f && playerRelativeAngle < -45f)
         {
             //right
+            spriteRenderer.flipX = false;
             CheckAndUpdateSprite(SIDE);
         }
         else
