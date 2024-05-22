@@ -13,7 +13,7 @@ public class EnemyController : MonoBehaviour
         Search,
         Attack
     }
-    
+
     EnemyState currentState = EnemyState.Patrol;
 
     public Transform[] patrolPoints;

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5691330677361477434}
   - component: {fileID: 9019931498228595410}
-  - component: {fileID: 2353429418835988123}
+  - component: {fileID: 6809573176698750975}
   m_Layer: 0
   m_Name: FlashLight
   m_TagString: Untagged
@@ -95,7 +95,7 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &2353429418835988123
+--- !u!114 &6809573176698750975
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
