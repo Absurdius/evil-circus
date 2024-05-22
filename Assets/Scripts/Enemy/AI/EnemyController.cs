@@ -259,4 +259,9 @@ public class EnemyController : MonoBehaviour
     {
         isStunned = true;
     }
+
+    public EnemyState GetEnemyState()
+    {
+        return currentState;
+    }
 }
