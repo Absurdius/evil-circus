@@ -7,7 +7,6 @@ public class EnemyLaughter : MonoBehaviour
     public EnemyController enemyController;
     public AudioClip[] laughs;
     
-    private Dictionary<EnemyController.EnemyState, AudioClip> soundDictionary;
     private AudioSource audioSource;
     private EnemyController.EnemyState currentState;
 
@@ -15,7 +14,6 @@ public class EnemyLaughter : MonoBehaviour
 
     void Start()
     {
-        soundDictionary = new Dictionary<EnemyController.EnemyState, AudioClip>();
         audioSource = gameObject.AddComponent<AudioSource>();
         currentState = enemyController.GetEnemyState();
     }
