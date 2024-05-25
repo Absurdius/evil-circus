@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -268,5 +269,9 @@ public class EnemyController : MonoBehaviour
     public bool IsStunned()
     {
         return isStunned;
+    }
+
+    public float GetRemainingStunTime() {
+        return remainingStunTime;
     }
 }

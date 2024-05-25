@@ -15,15 +15,19 @@ public class EnemyThudSound : MonoBehaviour
     {
         currentStunState = false;
         audioSource = GetComponent<AudioSource>();
+
     }
 
     void Update()
     {
-        if (currentStunState != enemyController.IsStunned() && enemyController.IsStunned())
+        if (currentStunState != enemyController.IsStunned())
         {
-            audioSource.PlayOneShot(thudSounds[UnityEngine.Random.Range(0, thudSounds.Length)]);
+            if (enemyController.IsStunned())
+            {
+                audioSource.PlayOneShot(thudSounds[UnityEngine.Random.Range(0, thudSounds.Length)]);
+                //Debug.Log("Play thud");
+            }
             currentStunState = enemyController.IsStunned();
-            Debug.Log("Play thud");
         }
     }
 }

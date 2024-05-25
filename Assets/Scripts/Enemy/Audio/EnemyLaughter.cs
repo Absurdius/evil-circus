@@ -28,7 +28,7 @@ public class EnemyLaughter : MonoBehaviour
                 currentState = enemyController.GetEnemyState();
                 if (!audioSource.isPlaying)
                 {
-                    audioSource.PlayOneShot(laughs[UnityEngine.Random.Range(0, laughs.Length)]);
+                    audioSource.PlayOneShot(laughs[UnityEngine.Random.Range(0, laughs.Length)], 1.0f);
                 }
             }
         } else
