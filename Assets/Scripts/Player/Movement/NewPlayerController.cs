@@ -4,9 +4,9 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class NewPlayerController : MonoBehaviour
 {
-    private enum MovementState
+    public enum MovementState
     {
         Walking,
         Running,
@@ -15,40 +15,59 @@ public class PlayerController : MonoBehaviour
         Airborne
     }
 
-    [SerializeField] private MovementState currentState = MovementState.Walking;
+    public MovementState currentState = MovementState.Walking;
+    private MovementState lastState;
 
-    public Camera playerCamera;
-    public float walkSpeed = 6f;
-    public float runSpeed = 12f;
-    public float staminaRechargeSpeed = 3f;
-    public float crouchSpeed = 3f;
-    public float currentSpeed;
-    public float jumpHeight = 7f;
-    public float jumpStaminaCost = 20f;
+    [Header("Walking")]
+    public float walkSpeed;
+
+
+    [Header("Running")]
+    public float runSpeed;
+    public bool isRunning = false;
+
+    [Header("Stamina Recharge")]
+    public float staminaRechargeSpeed;
+    private bool staminaNeedRecharge = false;
+
+    [Header("Crouching")]
+    public float crouchSpeed;
+    public bool isCrouching = false;
+    public float crouchHeight;
+
+    [Header("Ariborne")]
+    public float jumpHeight;
+    public float jumpStaminaCost;
     private bool jump;
-    public float gravity = 10f;
-    bool isRunning = false;
-    bool isCrouching = false;
-    public float crouchHeight = 1f;
-    public bool isGrounded;
-    public Transform groundCheck;
-    //UIStateManager stateManager;
-    public AudioSource[] audioSources;
-    public AudioClip[] audioClips;
 
-    public float maxStamina = 100f;
+    [Header("Stamina")]
+    public float maxStamina;
     public float stamina;
     public float staminaDrain;
     public float staminaRecharge;
-    private bool staminaNeedRecharge = false;
+
+    [Header("Sound Generation")]
+    public float currentDetectionRange;
+    public float walkDetectionRange;
+    public float runDetectionRange;
+    public float staminaRechargeDetectionRange;
+    public float crouchDetectionRange;
+    public float jumpDetectionRange;
+
+    [Header("Misc")]
+    public Camera playerCamera;
+    public float currentSpeed;
+    public float gravity;
+    public bool isGrounded;
+    public bool changedState;
 
     float horizontalInput;
     float verticalInput;
-    public float lookSpeed = 2f;
-    public float lookXLimit = 45f;
+    public float lookSpeed;
+    public float lookXLimit;
 
     Vector3 moveDirection = Vector3.zero;
-    float rotationX = 0f;
+    float rotationX;
 
     public bool canMove = true;
 
@@ -60,9 +79,8 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        //stateManager = GameObject.FindWithTag("StateManager").GetComponent<UIStateManager>();
-
         stamina = maxStamina;
+        currentSpeed = walkSpeed;
     }
 
     private void Update()
@@ -90,6 +108,10 @@ public class PlayerController : MonoBehaviour
 
         // Check if we're grounded
         isGrounded = Physics.CheckSphere(transform.position -= new Vector3(0, characterController.height / 2, 0), 0.2f, 1 << 10);
+        if (!isGrounded && currentState != MovementState.Airborne)
+        {
+            ChangeState(MovementState.Airborne);
+        }
 
         GetInputs();
 
@@ -97,10 +119,6 @@ public class PlayerController : MonoBehaviour
         if (UIStateManager.currentState == UIStateManager.UIState.PAUSED && canMove)
         {
             canMove = false;
-            foreach (AudioSource audioSource in audioSources)
-            {
-                audioSource.Stop();
-            }
         }
         else if (UIStateManager.currentState == UIStateManager.UIState.PLAYING && !canMove)
         {
@@ -117,9 +135,12 @@ public class PlayerController : MonoBehaviour
             {
                 HandleStamina(false, 0);
             }
-
-            Footsteps();
+            if (isGrounded && characterController.velocity.magnitude > 0f && Time.frameCount % 10 == 0)
+            {
+                SoundGeneration(currentDetectionRange);
+            }
         }
+
         MovePlayer();
     }
 
@@ -131,25 +152,34 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Run"))
         {
-            Run();
+            if (ReadyToRun())
+            {
+                ChangeState(MovementState.Running);
+            }
         }
         else if (Input.GetButtonUp("Run") && isRunning)
         {
-            Run();
+            ChangeState(MovementState.Walking);
         }
 
         if (Input.GetButtonDown("Crouch"))
         {
-            Crouch();
+            if (ReadyToCrouch())
+            {
+                ChangeState(MovementState.Crouching);
+            }
         }
         else if (Input.GetButtonUp("Crouch") && isCrouching)
         {
-            Crouch();
+            ChangeState(MovementState.Walking);
         }
 
         if (Input.GetButtonDown("Jump"))
         {
-            Jump();
+            if (ReadyToJump())
+            {
+                jump = true;
+            }
         }
     }
 
@@ -167,7 +197,7 @@ public class PlayerController : MonoBehaviour
         if (jump && canMove)
         {
             moveDirection.y = jumpHeight * gravity;
-            ChangeState(MovementState.Airborne);
+            //ChangeState(MovementState.Airborne);
             HandleStamina(true, jumpStaminaCost);
             jump = false;
 
@@ -196,60 +226,91 @@ public class PlayerController : MonoBehaviour
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
         }
-
-
     }
 
     // Change the current state
     private void ChangeState(MovementState newState)
     {
-        currentState = newState;
+        if (!isGrounded && currentState == MovementState.Airborne)
+        {
+            return;
+        }
+        else
+        {
+            lastState = currentState;
+            currentState = newState;
+            changedState = true;
+        }
+
+        if (lastState == MovementState.Crouching)
+        {
+            ResetCrouch();
+        }
+        else if (lastState == MovementState.Running)
+        {
+            isRunning = false; ;
+        }
     }
 
     // Handle the different states
     private void Walking()
     {
-        if (currentSpeed != walkSpeed)
+        if (changedState)
         {
             currentSpeed = walkSpeed;
+            currentDetectionRange = walkDetectionRange;
+            changedState = false;
         }
-
     }
 
     private void Running()
     {
-        if (currentSpeed != runSpeed)
+        if (changedState)
         {
             currentSpeed = runSpeed;
+            currentDetectionRange = runDetectionRange;
+            isRunning = true;
+            changedState = false;
         }
     }
 
     private void StaminaRecharge()
     {
-        if (currentSpeed != staminaRechargeSpeed)
+        if (changedState)
         {
             currentSpeed = staminaRechargeSpeed;
-        }
-
-        if (!audioSources[1].isPlaying && staminaNeedRecharge)
-        {
-            audioSources[1].Play();
+            currentDetectionRange = staminaRechargeDetectionRange;
+            changedState = false;
         }
     }
 
     private void Crouching()
     {
-        if (currentSpeed != crouchSpeed)
+        if (changedState)
         {
             currentSpeed = crouchSpeed;
+            currentDetectionRange = crouchDetectionRange;
+            isCrouching = true;
+            //characterController.height -= crouchHeight;
+            //transform.position -= new Vector3(0, crouchHeight, 0);
+            playerCamera.transform.position -= new Vector3(0, crouchHeight, 0);
+
+            changedState = false;
         }
     }
 
     private void Airborne()
     {
-        if (currentSpeed != walkSpeed)
+        if (changedState)
         {
             currentSpeed = walkSpeed;
+            changedState = false;
+        }
+
+        if (isGrounded)
+        {
+            SoundGeneration(jumpDetectionRange);
+            ChangeState(MovementState.Walking);
         }
     }
 
@@ -274,67 +335,30 @@ public class PlayerController : MonoBehaviour
 
     private bool ReadyToJump()
     {
-        if (isGrounded && stamina > jumpStaminaCost && !isCrouching && !staminaNeedRecharge)
+        if (isGrounded && stamina > jumpStaminaCost && !staminaNeedRecharge)
         {
             return true;
         }
         return false;
     }
 
-    // Handle run, jump and crouch
-
-    private void Run()
+    // Handle Detection
+    private void SoundGeneration(float detectionRange)
     {
-        if (!isRunning && ReadyToRun())
+        Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRange, 1 << 9);
+        foreach (Collider collider in colliders)
         {
-            isRunning = true;
-            ChangeState(MovementState.Running);
-        }
-        else if (isRunning)
-        {
-            isRunning = false;
-            if (staminaNeedRecharge)
-            {
-                ChangeState(MovementState.StaminaRecharge);
-            }
-            else
-            {
-                ChangeState(MovementState.Walking);
-            }
+            collider.gameObject.GetComponentInParent<NewEnemyController>().HearPlayer();
         }
     }
 
-    private void Crouch()
+    // Reset crouch
+    private void ResetCrouch()
     {
-        if (!isCrouching && ReadyToCrouch())
-        {
-            isCrouching = true;
-            characterController.height -= crouchHeight;
-            playerCamera.transform.position -= new Vector3(0, crouchHeight, 0);
-            ChangeState(MovementState.Crouching);
-        }
-        else if (isCrouching)
-        {
-            isCrouching = false;
-            characterController.height += crouchHeight;
-            playerCamera.transform.position += new Vector3(0, crouchHeight, 0);
-            if (staminaNeedRecharge)
-            {
-                ChangeState(MovementState.StaminaRecharge);
-            }
-            else
-            {
-                ChangeState(MovementState.Walking);
-            }
-        }
-    }
-
-    private void Jump()
-    {
-        if (ReadyToJump())
-        {
-            jump = true;
-        }
+        isCrouching = false;
+        //characterController.height += crouchHeight;
+        //transform.position += new Vector3(0, crouchHeight, 0);
+        playerCamera.transform.position += new Vector3(0, crouchHeight, 0);
     }
 
     // Handle stamina
@@ -375,34 +399,20 @@ public class PlayerController : MonoBehaviour
                 {
                     ChangeState(MovementState.Walking);
                 }
-
-                if (audioSources[1].isPlaying)
-                {
-                    audioSources[1].Stop();
-                }
             }
         }
     }
 
-    // Handle audio
-    private void Footsteps()
+    // Change camera sense
+    public void ChangeCamSense(float newSense)
     {
-        if (characterController.velocity.magnitude > 0f && isGrounded)
-        {
-            if (currentState == MovementState.Running && (audioSources[0].clip == audioClips[1] || !audioSources[0].isPlaying))
-            {
-                audioSources[0].clip = audioClips[0];
-                audioSources[0].Play();
-            }
-            else if (currentState != MovementState.Running && (audioSources[0].clip == audioClips[0] || !audioSources[0].isPlaying))
-            {
-                audioSources[0].clip = audioClips[1];
-                audioSources[0].Play();
-            }
-        }
-        else
-        {
-            audioSources[0].Stop();
-        }
+        lookSpeed = newSense;
+        CamSenseSave.instance.camSense = newSense;
+    }
+
+    // Show sound range
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, currentDetectionRange);
     }
 }

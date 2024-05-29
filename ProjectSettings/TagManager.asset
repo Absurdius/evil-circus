@@ -9,6 +9,7 @@ TagManager:
   - TheGaping
   - TheListener
   - TheStalker
+  - Moon
   layers:
   - Default
   - TransparentFX
