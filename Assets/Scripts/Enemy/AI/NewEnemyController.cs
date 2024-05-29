@@ -24,6 +24,8 @@ public class NewEnemyController : MonoBehaviour
     public float chaseSpeed;
     public float normalVisionAngle;
     public float visionRange;
+    public float visionRangeLit;
+    public float visionRangeUnlit;
     private float visionAngle;
 
     [Header("Stun")]
@@ -44,11 +46,13 @@ public class NewEnemyController : MonoBehaviour
 
     [Header("Attack")]
     public float attackRange;
-    private EnemyAttack enemyAttack;
+    private NewEnemyAttack enemyAttack;
 
     [Header("Misc")]
     bool haveVision;
     bool stateChanged;
+
+    private IlluminatedCheck illuminatedCheck;
 
     Transform playerTarget;
     Transform playerTargetVision;
@@ -64,10 +68,11 @@ public class NewEnemyController : MonoBehaviour
 
     void Start()
     {
+        illuminatedCheck = GameObject.FindWithTag("Player").GetComponentInChildren<IlluminatedCheck>();
         playerTarget = GameObject.FindWithTag("Player").transform;
         playerTargetVision = GameObject.Find("PlayerCamera").transform;
         navMeshAgent = GetComponent<NavMeshAgent>();
-        enemyAttack = GetComponentInChildren<EnemyAttack>();
+        enemyAttack = GetComponentInChildren<NewEnemyAttack>();
 
         currentPatrolPoint = 0;
         patrolTarget = patrolPoints[currentPatrolPoint];
@@ -111,6 +116,15 @@ public class NewEnemyController : MonoBehaviour
         var relativePos = playerTargetVision.position - detectionSource.position;
         var fwd = transform.forward;
         var angle = Vector3.Angle(relativePos, fwd);
+
+        if (illuminatedCheck.isIlluminated)
+        {
+            visionRange = visionRangeLit;
+        }
+        else
+        {
+            visionRange = visionRangeUnlit;
+        }
 
         if (angle < visionAngle)
         {

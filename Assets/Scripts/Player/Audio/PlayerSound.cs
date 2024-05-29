@@ -30,7 +30,7 @@ public class PlayerSound : MonoBehaviour
                 source.Pause();
             }
         }
-        else if (UIStateManager.currentState == UIStateManager.UIState.PAUSED && isPaused)
+        else if (UIStateManager.currentState == UIStateManager.UIState.PLAYING && isPaused)
         {
             isPaused = false;
             foreach (var source in audioSources)

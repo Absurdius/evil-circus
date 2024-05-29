@@ -5,9 +5,10 @@ using UnityEngine;
 public class NewEnemyAttack : MonoBehaviour
 {
     public float attackRange;
+    public float attackDelay;
     public float attackCooldown;
     public bool canAttack;
-    public bool isAttacking;
+    public bool isAttacking = false;
 
 
     private Animator animator;
@@ -21,11 +22,9 @@ public class NewEnemyAttack : MonoBehaviour
 
     public void Attack()
     {
-        if (canAttack)
+        if (!isAttacking)
         {
-            isAttacking = true;
-            canAttack = false;
-            animator.SetTrigger("Attack");
+            StartCoroutine(Attacking());
         }
     }
 
@@ -39,9 +38,7 @@ public class NewEnemyAttack : MonoBehaviour
 
     public void StopAttacking()
     {
-        animator.SetTrigger("CancelAttack");
-        ResetAttack();
-        animator.ResetTrigger("CancelAttack");
+        StopAllCoroutines();
     }
 
     public void ResetAttack()
@@ -51,9 +48,12 @@ public class NewEnemyAttack : MonoBehaviour
         animator.ResetTrigger("Attack");
     }
 
-    public IEnumerator AttackCooldown()
+    public IEnumerator Attacking()
     {
+        isAttacking = true;
+        yield return new WaitForSeconds(attackDelay);
+        CollisionCheck();
         yield return new WaitForSeconds(attackCooldown);
-        ResetAttack();
+        isAttacking = false;
     }
 }

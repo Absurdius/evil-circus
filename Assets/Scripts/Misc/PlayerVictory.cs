@@ -5,36 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class PlayerVictory : MonoBehaviour
 {
-    public GameObject victoryMessage;
-    //UIStateManager stateManager;
-    public bool hasWon;
+    public int requiredKeys;
+
+    GameStateManager stateManager;
+    KeyInventory inventory;
 
     private void Start()
     {
-        //stateManager = GameObject.FindWithTag("StateManager").GetComponent<UIStateManager>();
-    }
-
-    private void Victory()
-    {
-        hasWon = true;
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-        Time.timeScale = 0;
-        UIStateManager.currentState = UIStateManager.UIState.PAUSED;
-        victoryMessage.SetActive(true);
-    }
-
-    public void Exit()
-    {
-        hasWon = false;
-        SceneManager.LoadScene("MainMenu");
+        stateManager = GameObject.Find("ScriptHolder").GetComponent<GameStateManager>();
+        inventory = GameObject.FindWithTag("Player").GetComponent<KeyInventory>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 8)
+        if (other.gameObject.layer == 8 && inventory.keys == requiredKeys)
         {
-            Victory();
+            stateManager.DisplayVictoryScreen();
         }
 
         Debug.Log("detected collision. layermask is " + other.gameObject.layer);
