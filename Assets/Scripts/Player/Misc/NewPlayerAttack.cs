@@ -63,7 +63,7 @@ public class NewPlayerAttack : MonoBehaviour
         animator.ResetTrigger("Attack");
         if (remainingUses <= 0)
         {
-            weaponDisplay.SetActive(false);
+            //weaponDisplay.SetActive(false);
             gameObject.SetActive(false);
         }
     }

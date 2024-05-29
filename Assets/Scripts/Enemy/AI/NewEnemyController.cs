@@ -50,7 +50,7 @@ public class NewEnemyController : MonoBehaviour
 
     [Header("Misc")]
     bool haveVision;
-    bool stateChanged;
+    public bool stateChanged;
 
     private IlluminatedCheck illuminatedCheck;
 
@@ -257,7 +257,7 @@ public class NewEnemyController : MonoBehaviour
             }
 
             navMeshAgent.speed = chaseSpeed;
-            navMeshAgent.stoppingDistance = 1.75f;
+            navMeshAgent.stoppingDistance = 1.5f;
 
             stateChanged = false;
         }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class WalkCycleManager : MonoBehaviour
 {
@@ -13,16 +14,19 @@ public class WalkCycleManager : MonoBehaviour
     private Vector3 relativeVector = Vector3.forward;
     private SpriteRenderer spriteRenderer; 
     private Animator animator;
+    public Sprite[] sprites;
+    private NavMeshAgent agent;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerTransform = GameObject.Find("Orientation").transform;
+        playerTransform = GameObject.FindWithTag("Player").transform;
         if (playerTransform == null) { Debug.LogError("WalkcycleManager: playerTransform Not found!"); }
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         if (spriteRenderer == null) { Debug.LogError("WalkcycleManager: spriterenderer Not found!"); }
         animator = GetComponentInChildren<Animator>();
         if (animator == null) { Debug.LogError("WalkcycleManager: animator Not found!"); }
+        agent = GetComponentInParent<NavMeshAgent>();
 
     }
 
@@ -35,24 +39,39 @@ public class WalkCycleManager : MonoBehaviour
         {
             // back
             CheckAndUpdateSprite(BACK);
+            spriteRenderer.sprite = sprites[2];
         }
         else if (playerRelativeAngle < 135f && playerRelativeAngle > 45f)
         {
             // left
             spriteRenderer.flipX = true;
             CheckAndUpdateSprite(SIDE);
+            spriteRenderer.sprite = sprites[1];
         } 
         else if (playerRelativeAngle > -135f && playerRelativeAngle < -45f)
         {
             //right
             spriteRenderer.flipX = false;
             CheckAndUpdateSprite(SIDE);
+            spriteRenderer.sprite = sprites[1];
         }
         else
         {
             // forward
             CheckAndUpdateSprite(FORWARD);
-        } 
+            spriteRenderer.sprite = sprites[0];
+        }
+
+        Debug.Log(agent.velocity.magnitude);
+        
+        if (agent.velocity.magnitude < 0.1)
+        {
+            animator.SetBool("IsStopped", true);
+        }
+        else
+        {
+            animator.SetBool("IsStopped", false);
+        }
     }
 
     private void CheckAndUpdateSprite(int dir)
