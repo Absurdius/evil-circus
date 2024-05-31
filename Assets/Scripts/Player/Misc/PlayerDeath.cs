@@ -8,6 +8,9 @@ public class PlayerDeath : MonoBehaviour
 {
     public GameObject deathMessage;
     public GameObject playerCam;
+    public AudioSource playerAudioSource;
+    public AudioClip deathAudioClip;
+    public float waitingtime = 1.0f;
     //UIStateManager stateManager;
 
     public bool isDead;
@@ -21,10 +24,14 @@ public class PlayerDeath : MonoBehaviour
 
     public void Death()
     {
-        Debug.Log("Trigger death sequence");
         Animator deathAnimator = playerCam.GetComponent<Animator>();
-        deathAnimator.enabled = true;
-        deathAnimator.SetTrigger("DeathTrigger");
+        if(deathAnimator.enabled == false) { 
+            Debug.Log("Trigger death sequence");
+            deathAnimator.enabled = true;
+            deathAnimator.SetTrigger("DeathTrigger");
+            playerAudioSource.PlayOneShot(deathAudioClip);
+        }
+
         
         StartCoroutine(ShowDeathScreen());
         StartCoroutine(PlayDeathSequence());
@@ -43,7 +50,7 @@ public class PlayerDeath : MonoBehaviour
 
     private IEnumerator PlayDeathSequence()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(waitingtime);
         sequenceCompleted = true;
     }
 
