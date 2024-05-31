@@ -6,7 +6,7 @@ public class WeaponPickup : MonoBehaviour
 {
     private GameObject weapon;
 
-    private void Start()
+    private void Awake()
     {
         weapon = GameObject.Find("PlayerWeapon");
     }

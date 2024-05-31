@@ -44,14 +44,14 @@ public class WalkCycleManager : MonoBehaviour
         else if (playerRelativeAngle < 135f && playerRelativeAngle > 45f)
         {
             // left
-            spriteRenderer.flipX = true;
+            spriteRenderer.flipX = false;
             CheckAndUpdateSprite(SIDE);
             spriteRenderer.sprite = sprites[1];
         } 
         else if (playerRelativeAngle > -135f && playerRelativeAngle < -45f)
         {
             //right
-            spriteRenderer.flipX = false;
+            spriteRenderer.flipX = true;
             CheckAndUpdateSprite(SIDE);
             spriteRenderer.sprite = sprites[1];
         }
