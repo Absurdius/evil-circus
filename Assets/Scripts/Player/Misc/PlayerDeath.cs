@@ -10,6 +10,7 @@ public class PlayerDeath : MonoBehaviour
     public GameObject playerCam;
     public AudioSource playerAudioSource;
     public AudioClip deathAudioClip;
+    public AudioClip goreAudioClip;
     public float waitingtime = 1.0f;
     //UIStateManager stateManager;
 
@@ -43,7 +44,8 @@ public class PlayerDeath : MonoBehaviour
         isDead = true;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
+        playerAudioSource.PlayOneShot(goreAudioClip, 0.1f);
         UIStateManager.currentState = UIStateManager.UIState.PAUSED;
         deathMessage.SetActive(true);
     }
