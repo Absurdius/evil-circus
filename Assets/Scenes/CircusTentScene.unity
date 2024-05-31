@@ -17250,7 +17250,7 @@ MonoBehaviour:
   playerCam: {fileID: 6358382215209299023}
   playerAudioSource: {fileID: 7993975980820582183}
   deathAudioClip: {fileID: 8300000, guid: 5f6fdf7a561fa39409305f3a8bfb847b, type: 3}
-  waitingtime: 1.5
+  waitingtime: 2
   isDead: 0
 --- !u!4 &6982284308878000098
 Transform:
