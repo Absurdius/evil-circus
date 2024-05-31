@@ -38,31 +38,31 @@ public class WalkCycleManager : MonoBehaviour
         if (playerRelativeAngle >= 135f || playerRelativeAngle <= -135f)
         {
             // back
-            CheckAndUpdateSprite(BACK);
             spriteRenderer.sprite = sprites[2];
+            CheckAndUpdateSprite(BACK);
         }
         else if (playerRelativeAngle < 135f && playerRelativeAngle > 45f)
         {
             // left
+            spriteRenderer.sprite = sprites[1];
             spriteRenderer.flipX = false;
             CheckAndUpdateSprite(SIDE);
-            spriteRenderer.sprite = sprites[1];
         } 
         else if (playerRelativeAngle > -135f && playerRelativeAngle < -45f)
         {
             //right
+            spriteRenderer.sprite = sprites[1];
             spriteRenderer.flipX = true;
             CheckAndUpdateSprite(SIDE);
-            spriteRenderer.sprite = sprites[1];
         }
         else
         {
             // forward
-            CheckAndUpdateSprite(FORWARD);
             spriteRenderer.sprite = sprites[0];
+            CheckAndUpdateSprite(FORWARD);
         }
 
-        Debug.Log(agent.velocity.magnitude);
+        //Debug.Log(agent.velocity.magnitude);
         
         if (agent.velocity.magnitude < 0.1)
         {

@@ -5201,7 +5201,7 @@ MonoBehaviour:
   canBeStunned: 0
   patrolSpeed: 3.5
   chaseSpeed: 10.5
-  normalVisionAngle: 45
+  normalVisionAngle: 60
   visionRange: 50
   visionRangeLit: 100
   visionRangeUnlit: 10
@@ -5214,7 +5214,7 @@ MonoBehaviour:
   currentPatrolPoint: 0
   chaseTime: 0
   searchTime: 10
-  searchVisionAngle: 90
+  searchVisionAngle: 120
   attackRange: 2
   stateChanged: 0
   detectionSource: {fileID: 1675990711}
@@ -8520,7 +8520,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 01c1b90c9b032fa45905b97556fd34d8, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 0e8d5e51c10cdf1418280837e6302227, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -21469,7 +21469,7 @@ MonoBehaviour:
   canBeStunned: 0
   patrolSpeed: 3.5
   chaseSpeed: 10.5
-  normalVisionAngle: 45
+  normalVisionAngle: 60
   visionRange: 50
   visionRangeLit: 100
   visionRangeUnlit: 10
@@ -21481,7 +21481,7 @@ MonoBehaviour:
   currentPatrolPoint: 0
   chaseTime: 0
   searchTime: 10
-  searchVisionAngle: 90
+  searchVisionAngle: 120
   attackRange: 2
   stateChanged: 0
   detectionSource: {fileID: 947407384}
@@ -23595,7 +23595,7 @@ MonoBehaviour:
   canBeStunned: 0
   patrolSpeed: 3.5
   chaseSpeed: 10.5
-  normalVisionAngle: 45
+  normalVisionAngle: 60
   visionRange: 50
   visionRangeLit: 100
   visionRangeUnlit: 10
@@ -23608,7 +23608,7 @@ MonoBehaviour:
   currentPatrolPoint: 0
   chaseTime: 0
   searchTime: 10
-  searchVisionAngle: 90
+  searchVisionAngle: 120
   attackRange: 2
   stateChanged: 0
   detectionSource: {fileID: 1793544167}
@@ -32508,7 +32508,7 @@ MonoBehaviour:
   canBeStunned: 0
   patrolSpeed: 3.5
   chaseSpeed: 10.5
-  normalVisionAngle: 45
+  normalVisionAngle: 60
   visionRange: 50
   visionRangeLit: 100
   visionRangeUnlit: 10
@@ -32523,7 +32523,7 @@ MonoBehaviour:
   currentPatrolPoint: 0
   chaseTime: 0
   searchTime: 10
-  searchVisionAngle: 90
+  searchVisionAngle: 120
   attackRange: 2
   stateChanged: 0
   detectionSource: {fileID: 662127324}

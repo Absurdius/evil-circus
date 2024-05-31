@@ -116,6 +116,7 @@ public class NewEnemyController : MonoBehaviour
         var relativePos = playerTargetVision.position - detectionSource.position;
         var fwd = transform.forward;
         var angle = Vector3.Angle(relativePos, fwd);
+        //Debug.Log(angle);
 
         if (illuminatedCheck.isIlluminated)
         {
@@ -351,7 +352,6 @@ public class NewEnemyController : MonoBehaviour
         }
         currentState = newState;
         stateChanged = true;
-
 
         StopAllCoroutines();
     }
