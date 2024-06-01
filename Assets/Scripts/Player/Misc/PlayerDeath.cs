@@ -11,6 +11,8 @@ public class PlayerDeath : MonoBehaviour
     public AudioSource playerAudioSource;
     public AudioClip deathAudioClip;
     public AudioClip goreAudioClip;
+
+    public TimeTracker timeTracker;
     //UIStateManager stateManager;
 
     public bool isDead;
@@ -42,12 +44,15 @@ public class PlayerDeath : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
  
+        timeTracker.StopTimeTracking();
+
         UIStateManager.currentState = UIStateManager.UIState.PAUSED;
         deathMessage.SetActive(true);
 
         playerAudioSource.Stop();
         playerAudioSource.loop = true;
         playerAudioSource.Play();
+
 
     }
 
@@ -61,5 +66,11 @@ public class PlayerDeath : MonoBehaviour
     {
         isDead = false;
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void Retry()
+    {
+        isDead= false;
+        SceneManager.LoadScene("CircusTentScene");
     }
 }

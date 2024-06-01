@@ -43,6 +43,7 @@ public class EnemyAttack : MonoBehaviour
         {
             canAttack = false;
             isAttacking = true;
+            /*
             meshRenderer.enabled = true;
             if (!playerMovement.isCrouching)
             {
@@ -51,7 +52,7 @@ public class EnemyAttack : MonoBehaviour
             else
             {
                 animator.SetTrigger("Attack2");
-            }
+            }*/
             audioSource.Play();
         }
     }
