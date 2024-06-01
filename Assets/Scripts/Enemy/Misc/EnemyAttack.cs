@@ -17,6 +17,7 @@ public class EnemyAttack : MonoBehaviour
     private void Start()
     {
         playerMovement = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
+        
         //stateManager = GameObject.FindWithTag("StateManager").GetComponent<UIStateManager>();
         animator = GetComponent<Animator>();
         meshRenderer = GetComponent<MeshRenderer>();
@@ -87,7 +88,14 @@ public class EnemyAttack : MonoBehaviour
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, attackRange / 2, 1 << 8);
         foreach (var hitCollider in hitColliders)
         {
-            playerDeath.Death();
+            playerDeath = GameObject.FindWithTag("Player").GetComponent<PlayerDeath>();
+            if(playerDeath == null)
+            {
+                Debug.LogError("playerDeath Script ref not found");
+            } else
+            {
+                playerDeath.Death();
+            }
         }
     }
 }
