@@ -7487,7 +7487,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0.213
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -11007,7 +11007,7 @@ GameObject:
   - component: {fileID: 4631493547364098586}
   - component: {fileID: 8403266474645619807}
   m_Layer: 9
-  m_Name: AnimatedEnemy (3)
+  m_Name: CircusTentEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12633,25 +12633,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &4474358573937361194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4678996617002646816}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52062c8589d587a43b19531412dac650, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  laughs:
-  - {fileID: 8300000, guid: 68c702fb0b51c644ba70936e30d6155c, type: 3}
-  - {fileID: 8300000, guid: 1be6f7c3e10d83d40908269955b90408, type: 3}
-  - {fileID: 8300000, guid: 6ed2a677d51925e4c92181608aecd335, type: 3}
-  - {fileID: 8300000, guid: bc270d7d187ce61458016ae0aaf2adf4, type: 3}
-  - {fileID: 8300000, guid: 2d305d5feb814204a8c37d1a910e63d8, type: 3}
-  - {fileID: 8300000, guid: e62514eff803225429891478c6a7cca1, type: 3}
 --- !u!4 &4487365590952812468
 Transform:
   m_ObjectHideFlags: 0
@@ -13116,14 +13097,34 @@ GameObject:
   m_Component:
   - component: {fileID: 4401309538246945091}
   - component: {fileID: 2790915973751729777}
-  - component: {fileID: 4474358573937361194}
+  - component: {fileID: 4678996617002646817}
   m_Layer: 9
   m_Name: Laughs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
+--- !u!114 &4678996617002646817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4678996617002646816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 511a7e4bfff33bf4c98f1622c70349e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyController: {fileID: 8403266474645619807}
+  laughs:
+  - {fileID: 8300000, guid: 68c702fb0b51c644ba70936e30d6155c, type: 3}
+  - {fileID: 8300000, guid: bc270d7d187ce61458016ae0aaf2adf4, type: 3}
+  - {fileID: 8300000, guid: 6ed2a677d51925e4c92181608aecd335, type: 3}
+  - {fileID: 8300000, guid: 1be6f7c3e10d83d40908269955b90408, type: 3}
+  - {fileID: 8300000, guid: 2d305d5feb814204a8c37d1a910e63d8, type: 3}
+  - {fileID: 8300000, guid: e62514eff803225429891478c6a7cca1, type: 3}
 --- !u!1 &4705933544511197987
 GameObject:
   m_ObjectHideFlags: 0
@@ -15156,7 +15157,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3257890091961319897}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 762483494c2b428419581569de617a58, type: 2}
   m_CullingMode: 0
